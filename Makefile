@@ -8,16 +8,16 @@
 #wildcard ： 用于遍历指定目录的指定文件
 #RELOBJFILES_cpp和RELOBJFILES_c ： .cpp和.c编译后对应的.o文件
  
-TARGET = server
+TARGET = xmljson
  
 OBJ_DIR_THIS = release
  
 C_FLAGS = -Wall -g
  
 #如果头文件全部在include中，那么可以只包含include，如果头文件与源文件混合，那么最好将源文件目录页加入CPP_FLAGS 如-I./except \
-CPP_FLAGS =     -I. \
-        -I./except \
-        -I./socket \
+CPP_FLAGS =
+		-I. \
+        -I./src\
 		-I./include \
         -D_GNU_SOURCE \
         -D_LARGEFILE64_SOURCE \
@@ -27,9 +27,9 @@ CPP_FLAGS =     -I. \
  
  
 #源文件存放目录
-SOURCE_PATHS = . ./except ./socket
+SOURCE_PATHS = ./src
 #头文件包含
-INCLUDE_PATHS = . ./include
+INCLUDE_PATHS = ./include
  
 ############################ 请不要修改以下内容 #######################################
 LD_FLAGS = -lpthread  
