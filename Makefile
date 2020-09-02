@@ -8,7 +8,7 @@
 #wildcard ： 用于遍历指定目录的指定文件
 #RELOBJFILES_cpp和RELOBJFILES_c ： .cpp和.c编译后对应的.o文件
  
-TARGET = server
+TARGET = auto.a
  
 OBJ_DIR_THIS = release
  
