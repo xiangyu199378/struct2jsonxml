@@ -40,5 +40,7 @@ int main(int argc, char* argv[])
 	cout<<strXml<<endl;
 	strJson = CJson::Xml2Json(strXml);
 	cout<<strJson<<endl;
+        cout<<"------"<<endl;
+
 	return 0;
 }

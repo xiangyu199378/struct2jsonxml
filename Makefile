@@ -14,6 +14,7 @@
 TARGET = libautoconvert.a
 
 #OBJ_DIR_THIS : 中间文件存放目录 
+
 OBJ_DIR_THIS = release
  
 C_FLAGS = -Wall -g

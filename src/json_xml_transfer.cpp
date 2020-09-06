@@ -1,5 +1,6 @@
+
 // json_xml_transfer.cpp :xml和json协议相互转换测试函数
-//
+
 
 #include "Json.h"
 #include <iostream>
@@ -37,9 +38,8 @@ int main(int argc, char* argv[])
 						  }}";
 
 	std::string strXml = CJson::Json2Xml(strJson);
-	cout<<endl;
-	cout<<strXml<<endl;
-	cout<<endl;
+
+
 	strJson = CJson::Xml2Json(strXml);
 	cout<<strJson<<endl;
 	return 0;
