@@ -1,5 +1,7 @@
-#TARGET : 目标文件
-#OBJ_DIR_THIS : 中间文件存放目录
+############################ 请不要修改以下内容 #######################################
+#自动化协议组件打包
+############################ 请不要修改以下内容 #######################################
+
 #COMPILE.cpp和COMPILE.c ： 编译
 #LINK.cpp和LINK.c ： 链接
 #SOURCE_PATHS ： 源码.c和.cpp存放目录，多个目录用空格隔开
@@ -7,22 +9,20 @@
 #foreach ： 用于遍历多个目录
 #wildcard ： 用于遍历指定目录的指定文件
 #RELOBJFILES_cpp和RELOBJFILES_c ： .cpp和.c编译后对应的.o文件
- 
-TARGET = xmljson
- 
+
+#TARGET : 目标文件
+TARGET = libautoconvert.a
+
+#OBJ_DIR_THIS : 中间文件存放目录 
 OBJ_DIR_THIS = release
  
 C_FLAGS = -Wall -g
  
-#如果头文件全部在include中，那么可以只包含include，如果头文件与源文件混合，那么最好将源文件目录页加入CPP_FLAGS 如-I./except \
-CPP_FLAGS =
-		-I. \
-        -I./src\
-		-I./include \
-        -D_GNU_SOURCE \
-        -D_LARGEFILE64_SOURCE \
-        -D_FILE_OFFSET_BITS=64 \
-        -D__STDC_CONSTANT_MACROS 
+
+CPP_FLAGS = -D_GNU_SOURCE \
+			-D_LARGEFILE64_SOURCE \
+			-D_FILE_OFFSET_BITS=64 \
+			-D__STDC_CONSTANT_MACROS 
  
  
  
@@ -35,10 +35,11 @@ INCLUDE_PATHS = ./include
 LD_FLAGS = -lpthread  
  
 COMPILE.cpp = g++ $(C_FLAGS) $(CPP_FLAGS) -c
-LINK.cpp = g++
-COMPILE.c = gcc $(C_FLAGS) $(CPP_FLAGS) -c
-LINK.c = gcc
- 
+LINK.cpp    = g++
+COMPILE.c   = gcc $(C_FLAGS) $(CPP_FLAGS) -c
+LINK.c      = gcc
+AR          = ar
+RANLIB      = ranlib
  
  
 RELCFLAGS = -O2 -fno-strict-aliasing
@@ -64,7 +65,8 @@ mkdir:
 release:    $(TARGET)
  
 $(TARGET):   $(RELOBJFILES_cpp) $(RELOBJFILES_c)
-	$(LINK.cpp) -o $@ $^ -lrt  $(LD_FLAGS)
+#	$(LINK.cpp) -o $@ $^ -lrt  $(LD_FLAGS)
+	$(AR) cru $(TARGET)  $(RELOBJFILES_cpp) $(RELOBJFILES_c)
 	@echo === make ok, output: $(TARGET) ===
  
 $(RELOBJFILES_cpp): $(OBJ_DIR_THIS)/%.o: %.cpp $(HEADERS)
